@@ -1,0 +1,38 @@
+﻿@model FolderHierarchyViewer.Models.Catalog
+
+<h1>Current Catalog: @Model.Name</h1>
+
+@if (Model.Id != null)
+{
+    <div>
+        @Html.ActionLink("Back to Root Catalog Selection", "SelectRootCatalog")
+    </div>
+}
+
+@if (Model.Children != null && Model.Children.Any())
+{
+    <ul>
+        @foreach (var childCatalog in Model.Children)
+        {
+            <li>
+                @Html.ActionLink(childCatalog.Name, "ChildCatalogs", new { id = childCatalog.Id })
+            </li>
+        }
+    </ul>
+}
+
+@{
+    if (Model.Parent != null)
+    {
+        <div>
+            @Html.ActionLink("Back to Parent Catalog", "ChildCatalogs", new { id = Model.Parent.Id })
+        </div>
+    }
+}
+
+<div style="margin-top: 20px;">
+    @Html.ActionLink("Import Directory Structure", "Import")
+</div>
+<div>
+    @Html.ActionLink("Export Directory Structure", "Export")
+</div>

@@ -1,0 +1,12 @@
+﻿@model List<FolderHierarchyViewer.Models.Catalog>
+
+<h1>Select a Root Catalog</h1>
+
+<ul>
+    @foreach (var rootCatalog in Model)
+    {
+        <li>
+            @Html.ActionLink(rootCatalog.Name, "Index", new { id = rootCatalog.Id })
+        </li>
+    }
+</ul>
